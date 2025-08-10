@@ -1,9 +1,37 @@
 import React from 'react'
+import { useState } from 'react'
+
+function Card({title}){
+  const[hasLiked, sethasLiked] = useState(false);
+
+
+  return (
+    <div className='card'>
+      <h2>{title}</h2>
+      <button onClick={() => sethasLiked(!hasLiked)}>
+        {hasLiked ? 'Unlike' : 'Like'}  {/*//when the button is clicked, it toggles the state of hasLiked without reloading the page. */}
+      </button>
+    </div>
+  )
+}
+ // This is a reusable card component.
+//or
+// function Card(props){
+//   return (
+//     <div className='card'>
+//       <h2>{props.title}</h2>
+//       <p>This is a reusable card component.</p>
+//     </div>
+//   )
+//}
 
 function App() {
+
   return (
     <div className='main'>
-      <h1>hello</h1>
+      <h1>Hello People....!</h1>
+      <Card title="Star wars"/>
+      <Card title="Harry Potter"/>
     </div>
   )
 }
