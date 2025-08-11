@@ -1,13 +1,19 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function Card({title}){
+  const[count, setCount] = useState(0); //useState is a hook that allows you to add state to functional components.
   const[hasLiked, sethasLiked] = useState(false);
+
+  useEffect(() => {
+    console.log(`The card titled "${title}" has been ${hasLiked ? 'liked' : 'unliked'}.`);
+  },[hasLiked, title]); //useEffect is a hook that allows you to perform side effects in function components. It runs after the component renders and whenever the dependencies change.
+
 
 
   return (
-    <div className='card'>
-      <h2>{title}</h2>
+    <div className='card' onClick={()=> setCount((count + 1))}>
+      <h2>{title} - {count}</h2>
       <button onClick={() => sethasLiked(!hasLiked)}>
         {hasLiked ? 'Unlike' : 'Like'}  {/*//when the button is clicked, it toggles the state of hasLiked without reloading the page. */}
       </button>
