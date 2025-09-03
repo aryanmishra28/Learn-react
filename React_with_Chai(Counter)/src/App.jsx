@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function App() {
   // useState hook to manage counter state
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0);  //setCounter is a function to update the counter value
 
   function reset() {
     setCounter(0);
@@ -14,6 +14,13 @@ function App() {
       setCounter(20);
     }
   }
+
+  //we use callback to increase the counter value by 3
+  // function increase() {
+  //   setCounter(prevCounter => prevCounter + 1)
+  //   setCounter(prevCounter => prevCounter + 1)
+  //   setCounter(prevCounter => prevCounter + 1)
+  // }
 
   function decrease() {
     setCounter(counter - 1);
