@@ -1,41 +1,51 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-function Card({title}){
-  const[count, setCount] = useState(0); //useState is a hook that allows you to add state to functional components.
-  const[hasLiked, sethasLiked] = useState(false);
+function Card({ title }) {
+  const [count, setCount] = useState(0);
+  const [hasLiked, sethasLiked] = useState(false);
 
   useEffect(() => {
-    console.log(`The card titled "${title}" has been ${hasLiked ? 'liked' : 'unliked'}.`);
-  },[hasLiked, title]); //useEffect is a hook that allows you to perform side effects in function components. It runs after the component renders and whenever the dependencies change.
-
-
+    console.log(
+      `The card titled "${title}" has been ${hasLiked ? 'liked' : 'unliked'}.`
+    );
+  }, [hasLiked, title]);
 
   return (
-    <div className='card' onClick={()=> setCount((count + 1))}>
+    <div className="card">
       <h2>{title} - {count}</h2>
-      <button onClick={() => sethasLiked(!hasLiked)}>
-        {hasLiked ? 'Unlike' : 'Like'}  {/*//when the button is clicked, it toggles the state of hasLiked without reloading the page. */}
+      <button
+        onClick={() => {
+          if (hasLiked) {
+            setCount(count - 1); // decrease on unlike
+          } else {
+            setCount(count + 1); // increase on like
+          }
+          sethasLiked(!hasLiked); // toggle like/unlike
+        }}
+      >
+        {hasLiked ? 'Unlike' : 'Like'}
       </button>
     </div>
-  )
+  );
 }
- // This is a reusable card component.
-//or
-// function Card(props){
-//   return (
-//     <div className='card'>
-//       <h2>{props.title}</h2>
-//       <p>This is a reusable card component.</p>
-//     </div>
-//   )
-//}
+
+// This is a reusable card component.
+//  or
+//  function Card(props){
+//    return (
+//      <div className='card'>
+//        <h2>{props.title}</h2>
+//        <p>This is a reusable card component.</p>
+//      </div>
+//    )
+//  }
 
 function App() {
 
   return (
-    <div className='main'>
-      <h1>Hello People....!</h1>
+    <div className='main   '>
+      <h1 className='bg-green-500 text-white p-4'>Hello People....!</h1>
       <Card title="Star wars"/>
       <Card title="Harry Potter"/>
     </div>
